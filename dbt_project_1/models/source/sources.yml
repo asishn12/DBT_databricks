@@ -1,6 +1,6 @@
 sources:
   - name: source
-    database: dbt  # in dbt this is the same as your catalog in databricks.
+    database: '{{target.catalog}}'  # in dbt this is the same as your catalog in databricks.
     schema: source  # in dbt this is the same as your schema in databricks.
     tables:
       - name: fact_sales
