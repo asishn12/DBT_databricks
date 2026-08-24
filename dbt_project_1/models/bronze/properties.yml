@@ -8,3 +8,34 @@ models:
   - name: bronze_product #  Must match the filename of a model -- including case sensitivity.
     config:
         materialized: view
+
+  - name: bronze_store #  Must match the filename of a model -- including case sensitivity.
+    columns:
+      - name: store_sk
+        data_tests:
+          - unique
+          - not_null
+      - name: store_name
+        data_tests:
+          - accepted_values:
+              arguments: # available in v1.10.5 and higher. Older versions can set the <argument_name> as the top-level property.
+                values: ['MegaMart Manhattan', 'MegaMart Brooklyn', 'MegaMart Austin', 'MegaMart San Jose', 'MegaMart Toronto']
+              config:
+                severity: warn
+      - name: country
+        data_tests:
+          - accepted_values:
+              arguments: # available in v1.10.5 and higher. Older versions can set the <argument_name> as the top-level property.
+                values: ['USA', 'Canda']    # this should give warning for Canada, since it is misspelled.  The accepted values are case sensitive.
+              config:
+                severity: warn
+
+  - name: bronze_sales #  Must match the filename of a model -- including case sensitivity.
+    columns:
+      - name: sales_id
+        data_tests:
+          - unique
+          - not_null
+      - name: gross_amount
+        data_tests:
+          - generic_non_negative

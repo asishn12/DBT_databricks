@@ -1,0 +1,5 @@
+customer_name,customer_id,product_id,product_name,quantity,gross_amount,net_amount
+John Doe,1,1,Product A,5,100.00,80.00
+Jane Smith,2,2,Product B,3,150.00,120.00
+Bob Johnson,3,3,Product C,2,200.00,160.00
+
